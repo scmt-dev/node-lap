@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function testApi() {
+        try {
+            // reqest api
+            const req = await fetch('http://localhost:5001')
+            console.log(req)
+            const res = await req.json()
+            console.log(res)
+            const reqLog = await fetch('http://localhost:5001/logging',{
+              method:'POST',
+              headers:{
+                'Content-Type':'Application/JSON'
+              },
+              body: JSON.stringify({
+                error: 'Error someting',
+                label: "APP"
+              })
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+      }
+
+
+
+      testApi();
+    </script>
+  </body>
+</html>

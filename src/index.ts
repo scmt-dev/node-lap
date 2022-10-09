@@ -1,16 +1,16 @@
 import express from "express";
-import logger from "./lib/logger";
+import cors from 'cors';
 
+import { loggingRouter } from "./routes/logging";
 const app = express();
 
-// app.get("/", (req, res) => {
-//   logger.info("Hello logging", { level: "APP", label: "INDEX" });
-//   res.status(200).json({ status: "Hello logging" });
-// });
+app.use(cors());
+app.use(express.json());
 
-app.post("/", (req, res) => {
-  logger.info("Hello logging", { level: "APP", label: "PRODUCTION" });
-  res.status(200).json({ status: "success" });
+app.use('/logging', loggingRouter)
+
+app.get("/", (req, res) => {
+  res.status(200).json({ message: 'API v1.0.0', status: "success" });
 });
 
 const port = 5001;
