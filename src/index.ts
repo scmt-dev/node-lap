@@ -2,12 +2,14 @@ import express from "express";
 import cors from 'cors';
 
 import { loggingRouter } from "./routes/logging";
+import { uploadRouter } from "./routes/upload";
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/logging', loggingRouter)
+app.use('/upload', uploadRouter)
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: 'API v1.0.0', status: "success" });
